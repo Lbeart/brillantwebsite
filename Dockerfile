@@ -42,7 +42,6 @@ RUN apk update && apk add --no-cache \
     oniguruma-dev
 
 
-RUN adduser -D -u 1000 www-data
 
 RUN docker-php-ext-install pdo_mysql mbstring bcmath gd zip xml
 

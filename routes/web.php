@@ -17,9 +17,7 @@ use App\Http\Controllers\ContactController;
 
 
 
-Route::get('/', function () {
-    return view('items.index');
-});
+Route::get('/', [ItemController::class, 'index'])->name('home');
 
 Route::get('/about', function () {
     return view('about');
