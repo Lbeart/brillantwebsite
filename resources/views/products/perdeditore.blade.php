@@ -237,14 +237,38 @@
 <br>
 <div class="container py-4">
   <div class="row g-4 justify-content-center">
-    @php
-      $images = [
-        ['file' => 'perde.jpg', 'desc' => 'Perde Ditore - Dizajn Modern'],
-        ['file' => 'perde2.jpg', 'desc' => 'Perde Ditore - Ngjyrë E Bardhë'],
-        ['file' => 'perde3.jpg', 'desc' => 'Perde Ditore - Me Dantellë'],
-        ['file' => 'perde4.jpg', 'desc' => 'Perde Ditore - E Lehtë dhe Transparente'],
-      ];
-    @endphp
+  @php
+  $images = [
+    ['file' => 'image00001.jpeg', 'desc' => 'Perde - Model Elegant'],
+    ['file' => 'perde2.jpg', 'desc' => 'Perde - E thjeshtë me teksturë'],
+    ['file' => 'image00003.jpeg', 'desc' => 'Perde - Stil Klasik'],
+    ['file' => 'image00004.jpeg', 'desc' => 'Perde - Me dantellë tradicionale'],
+    ['file' => 'image00005.jpeg', 'desc' => 'Perde - Me dizajn lulesh'],
+    ['file' => 'image00006.jpeg', 'desc' => 'Perde - Ngjyrë pastel vjollcë'],
+    ['file' => 'image00007.jpeg', 'desc' => 'Perde - Ngjyrë bezhë e ngrohtë'],
+    ['file' => 'image00008.jpeg', 'desc' => 'Perde - Me rrathë dekorativë'],
+    ['file' => 'image00009.jpeg', 'desc' => 'Perde - E bardhë me lule'],
+    ['file' => 'image00010.jpeg', 'desc' => 'Perde - E varur me palosje'],
+    ['file' => 'image00011.jpeg', 'desc' => 'Perde - Ngjyrë kafe dhe bezhë'],
+    ['file' => 'image00012.jpeg', 'desc' => 'Perde - Stil i valëzuar'],
+    ['file' => 'image00013.jpeg', 'desc' => 'Perde - Me motive gjeometrike'],
+    ['file' => 'image00014.jpeg', 'desc' => 'Perde - E bardhë klasike'],
+    ['file' => 'image00015.jpeg', 'desc' => 'Perde - Me pika të bardha'],
+    ['file' => 'image00016.jpeg', 'desc' => 'Perde - Me dantellë të errët poshtë'],
+    ['file' => 'image00017.jpeg', 'desc' => 'Perde - Me degë të zeza'],
+    ['file' => 'image00018.jpeg', 'desc' => 'Perde - E errët dhe elegante'],
+    ['file' => 'image00019.jpeg', 'desc' => 'Perde - E bardhë e dendur'],
+    ['file' => 'image00020.jpeg', 'desc' => 'Perde - E bardhë e lehtë'],
+    ['file' => 'image00021.jpeg', 'desc' => 'Perde - Me valëzime të dendur'],
+    ['file' => 'image00022.jpeg', 'desc' => 'Perde - Me detaje delikate'],
+    ['file' => 'image00023.jpeg', 'desc' => 'Perde - E bardhë minimaliste'],
+    ['file' => 'image00024.jpeg', 'desc' => 'Perde - Me linja horizontale'],
+    ['file' => 'image00025.jpeg', 'desc' => 'Perde - Transparente dhe klasike'],
+    ['file' => 'perde.jpg',     'desc' => 'Perde Ditore - Dizajn Modern'],
+    ['file' => 'image00002.jpeg',    'desc' => 'Perde Ditore - Ngjyrë E Bardhë'],
+  ];
+@endphp
+
 
     @foreach ($images as $img)
       <div class="col-6 col-md-4 col-lg-3">
