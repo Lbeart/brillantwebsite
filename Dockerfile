@@ -3,6 +3,10 @@
 # ───────────────────────────────────────────────
 FROM php:8.2-cli AS build_vendor
 
+RUN mkdir -p storage/logs bootstrap/cache \
+ && chown -R www-data:www-data storage bootstrap/cache \
+ && chmod -R 775 storage bootstrap/cache
+ 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     zip \
     unzip \
