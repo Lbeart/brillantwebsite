@@ -1,15 +1,14 @@
 #!/bin/sh
 
-# Krijo storage nëse mungon
-mkdir -p /var/www/storage/logs /var/www/bootstrap/cache
-
-# Jep leje të plota për userin www-data
+# Set permissions again in case container reset them
 chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
-# Ekzekuto komandat si www-data
-su www-data -s /bin/sh -c "php artisan config:cache"
-su www-data -s /bin/sh -c "php artisan migrate --force || true"
+# Laravel optimizations
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+php artisan migrate --force || true
 
-# Nise supervisord si www-data
-exec su www-data -s /bin/sh -c "/usr/bin/supervisord -c /etc/supervisord.conf"
+# Start Supervisor to keep services running
+/usr/bin/supervisord -c /etc/supervisord.conf
