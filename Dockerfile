@@ -1,12 +1,12 @@
 # ─────────────────────────────────────────────── 
 # STAGE 1: Composer dependencies (build_vendor)
 # ───────────────────────────────────────────────
+
+
 FROM php:8.2-cli AS build_vendor
 
-RUN mkdir -p storage/logs bootstrap/cache \
- && chown -R www-data:www-data storage bootstrap/cache \
- && chmod -R 775 storage bootstrap/cache
- 
+
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     zip \
     unzip \
@@ -63,6 +63,8 @@ RUN chmod +x /start.sh
 
 # Ensure all files are owned correctly
 RUN chown -R www-data:www-data /var/www && chmod -R 755 /var/www
-
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
+ && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 EXPOSE 8080
+
 CMD ["/bin/sh", "/start.sh"]
