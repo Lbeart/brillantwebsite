@@ -41,6 +41,9 @@ RUN apk update && apk add --no-cache \
     curl \
     oniguruma-dev
 
+
+RUN adduser -D -u 1000 www-data
+
 RUN docker-php-ext-install pdo_mysql mbstring bcmath gd zip xml
 
 WORKDIR /var/www
@@ -65,6 +68,7 @@ RUN chmod +x /start.sh
 RUN chown -R www-data:www-data /var/www && chmod -R 755 /var/www
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
  && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+
 EXPOSE 8080
 
 CMD ["/bin/sh", "/start.sh"]
