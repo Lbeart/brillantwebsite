@@ -202,7 +202,7 @@
     </button>
     <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
       <ul class="navbar-nav align-items-center">
-        <li class="nav-item me-3"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item me-3"><a class="nav-link" href="/home">Home</a></li>
         <li class="nav-item dropdown me-3">
           <a class="nav-link dropdown-toggle" href="#" id="catalogDropdown" data-bs-toggle="dropdown">Products</a>
           <ul class="dropdown-menu">

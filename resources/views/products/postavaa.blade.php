@@ -247,7 +247,7 @@
     <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
       <ul class="navbar-nav align-items-center">
         <li class="nav-item me-3">
-          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="/home">Home</a>
         </li>
 
         <!-- Dropdown -->
