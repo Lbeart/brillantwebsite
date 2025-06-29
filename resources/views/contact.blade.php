@@ -112,6 +112,30 @@
     font-size: 1rem;
   }
 }
+.dropdown-menu {
+        position: static;
+        float: none;
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+
+      .dropdown-menu .dropdown-item {
+        padding-left: 1.5rem;
+      }
+    }
+    .dropdown-submenu .submenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: 0.1rem;
+  border-radius: 1rem;
+  min-width: 180px;
+}
+
+.dropdown-submenu:hover .submenu {
+  display: block;
+}
   </style>
 </head>
 <body>
