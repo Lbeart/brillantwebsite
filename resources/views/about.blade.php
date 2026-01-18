@@ -7,6 +7,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="icon" type="image/png" href="{{ asset('images/llogo.png') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
   <style>
     body { font-family: 'Poppins', sans-serif;
             background-color: #f7f9fc;
@@ -17,7 +19,7 @@
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 65%;
+  width: min(1250px, 78%);
   padding: 0.75rem 2rem;
     background-color: #f0f0f5; 
   backdrop-filter: blur(8px); 
@@ -182,10 +184,15 @@
 <br>
 <br>
 <br>
+<h1>FTP WORKS ✅</h1>
+<h1>FTP WORKS ✅</h1>
+
 
 <section class="py-5" style="background-color: #f7f9fc;">
   <div class="container">
     <h2 class="text-center fw-bold mb-4">Our Story</h2>
+
+
     <p class="our-story-text">
       For over 16 years, we've proudly served customers with quality textiles. 
       Although we experienced a one-year closure, our passion never faded. 
@@ -244,10 +251,71 @@
 <li><a class="dropdown-item" href="/batanije">Batanije</a></li>
 <li><a class="dropdown-item" href="/tepihebanjo">Tepiha për Banjo</a></li>
 <li><a class="dropdown-item" href="/posteqia">Posteqia</a></li>
+            <li><a class="dropdown-item" href="/garnishte"><i class="bi bi-dash-square me-2"></i>Garnishte</a></li>
+
             </ul>
           </li>
           <li class="nav-item me-3"><a class="nav-link active" href="#">About Us</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact Us</a></li>
+          @auth
+  <li class="nav-item dropdown ms-lg-2">
+    <a class="nav-link dropdown-toggle d-flex align-items-center gap-2"
+       href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-person-circle"></i>
+      <span class="user-name">{{ Auth::user()->name }}</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+      @if(auth()->user()->role === 'admin')
+        <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin</a></li>
+        <li><hr class="dropdown-divider"></li>
+      @endif
+      <li>
+        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+          @csrf
+          <button type="submit" class="dropdown-item">Log out</button>
+        </form>
+      </li>
+    </ul>
+  </li>
+@else
+  <li class="nav-item ms-lg-2">
+    <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm">Log in</a>
+  </li>
+@endauth
+ {{-- === Shporta me dropdown "Gjurmo porosinë" (vendose menjëherë pas/ në vend të item-it të Shportës) === --}}
+<li class="nav-item dropdown ms-lg-2">
+  <a class="nav-link dropdown-toggle d-flex align-items-center gap-2"
+     href="#" id="cartDropdown" role="button"
+     data-bs-toggle="dropdown" aria-expanded="false" onclick="return false;">
+    <i class="bi bi-bag"></i> Shporta
+    <span class="badge bg-danger rounded-pill ms-1 cart-badge">
+      {{ session('cart_total_qty', 0) }}
+    </span>
+  </a>
+
+  <div class="dropdown-menu dropdown-menu-end p-3 shadow" aria-labelledby="cartDropdown" style="min-width: 320px;">
+    <div class="small text-muted mb-2">Gjurmo porosinë</div>
+
+    <form class="d-flex align-items-stretch gap-2"
+          onsubmit="event.preventDefault();
+                    const el=this.querySelector('#trackCodeNav');
+                    const v=(el?.value||'').trim();
+                    if(v){ window.location='{{ url('/track') }}/'+encodeURIComponent(v); }">
+      <div class="input-group input-group-sm">
+        <span class="input-group-text"><i class="bi bi-search"></i></span>
+        <input id="trackCodeNav" type="text" class="form-control"
+               placeholder="p.sh. BRL-LKNJ-0YXN" autocomplete="off" required>
+        <button class="btn btn-danger" type="submit">Gjurmo</button>
+      </div>
+    </form>
+
+    <div class="mt-3 d-grid">
+      <a class="btn btn-outline-secondary btn-sm" href="{{ route('cart.index') }}">
+        <i class="bi bi-bag"></i> Shiko shportën
+      </a>
+    </div>
+  </div>
+</li>
         </ul>
       </div>
     </div>
@@ -307,6 +375,25 @@
       <small class="text-muted">Crafted by RDR Digital L.L.C</small>
     </div>
   </footer>
+<script>
+  // përditëson të gjitha badge-t e shportës në faqe
+  window.updateCartBadges = function(totalQty){
+    document.querySelectorAll('.cart-badge').forEach(function(badge){
+      badge.textContent = totalQty;
+      // animim i vogël (opsional)
+      badge.style.transition = 'transform .18s';
+      badge.style.transform = 'scale(1.12)';
+      setTimeout(()=> badge.style.transform = 'scale(1)', 180);
+    });
+  };
+
+  // dëgjo event-in global kur ndryshon shporta (p.sh. nga AJAX)
+  document.addEventListener('cart:updated', function(e){
+    if (e.detail && typeof e.detail.totalQty !== 'undefined') {
+      updateCartBadges(e.detail.totalQty);
+    }
+  });
+</script>
 
 </body>
 </html>
